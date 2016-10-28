@@ -79,8 +79,8 @@ int main(int argc, char* argv[])
 	std::cout << "Special thanks to tromp for providing optimized CPU equihash solver" << std::endl;
 	std::cout << std::endl;
 
-	std::string location = "eu";
-	std::string user = "1DXnVXrTmcEd77Z6E4zGxkn7fGeHXSGDt1";
+	std::string location = "us1-zcash.flypool.org:3333";
+	std::string user = "";
 	std::string password = "x";
 	int num_threads = -1;
 	bool benchmark = false;
@@ -146,8 +146,9 @@ int main(int argc, char* argv[])
 
 	if (!benchmark)
 	{
-		std::string host = "equihash." + location + ".nicehash.com";
-		std::string port = "3357";
+		size_t delim = location.find(':');
+	        std::string host = location.substr(0, delim);
+            	std::string port = location.substr(delim+1);
 
 		std::shared_ptr<boost::asio::io_service> io_service(new boost::asio::io_service);
 
